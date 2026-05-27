@@ -44,10 +44,10 @@ void AGASPlayerController::Move(const FInputActionValue& InputActionValue)
 	const FRotator YawRotation = FRotator(0.f, Rotation.Yaw, 0.f);
 	
 	FRotationMatrix RotationMatrix(YawRotation);
-	FVector ForwardDirection = RotationMatrix.GetUnitAxis(EAxis::Y);
-	FVector RightDirection = RotationMatrix.GetUnitAxis(EAxis::X);
+	FVector ForwardDirection = RotationMatrix.GetUnitAxis(EAxis::X);
+	FVector RightDirection = RotationMatrix.GetUnitAxis(EAxis::Y);
 	
-	if (APawn* ControlledPawn = GetPawn())
+	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
