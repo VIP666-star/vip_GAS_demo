@@ -16,8 +16,7 @@ void UGASAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	FVector Speed = GASCharacter->GetVelocity();
 	Speed.Z = 0.f;
 	GroundSpeed = Speed.Size();
-	
 	bIsFalling = GASCharacter->GetCharacterMovement()->IsFalling();
-	
-	bShouldMove = GroundSpeed > 0.f;
+	bShouldMove = GroundSpeed > 5.f;
+	bHasAcceleration = GASCharacter->GetCharacterMovement()->GetCurrentAcceleration().SizeSquared() > 0.f;
 }

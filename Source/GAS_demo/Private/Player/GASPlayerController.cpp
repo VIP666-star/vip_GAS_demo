@@ -29,8 +29,6 @@ void AGASPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 	EnhancedInputComponent->BindAction(IA_Move, ETriggerEvent::Triggered, this, &AGASPlayerController::Move);
 	EnhancedInputComponent->BindAction(IA_Look, ETriggerEvent::Triggered, this, &AGASPlayerController::Look);
-	EnhancedInputComponent->BindAction(IA_Jump, ETriggerEvent::Started, this, &AGASPlayerController::Jump);
-	EnhancedInputComponent->BindAction(IA_Jump, ETriggerEvent::Completed, this, &AGASPlayerController::StopJumping);
 	
 }
 
@@ -56,18 +54,4 @@ void AGASPlayerController::Look(const FInputActionValue& InputActionValue)
 	const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
 	AddYawInput(InputAxisVector.X);
 	AddPitchInput(InputAxisVector.Y);
-}
-
-void AGASPlayerController::Jump()
-{
-	AGASCharacter* GASCharacter = GetPawn<AGASCharacter>();
-	check(GASCharacter);
-	GASCharacter->Jump();
-}
-
-void AGASPlayerController::StopJumping()
-{
-	AGASCharacter* GASCharacter = GetPawn<AGASCharacter>();
-	check(GASCharacter);
-	GASCharacter->StopJumping();
 }

@@ -23,4 +23,6 @@ protected:
 	bool bIsFalling;
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	bool bShouldMove;
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	bool bHasAcceleration;
 };
